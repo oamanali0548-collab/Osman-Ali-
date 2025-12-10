@@ -1,0 +1,24 @@
+## one hot encodding & dummy variables 
+# catgorical data ko numerical data te convert 
+
+import seaborn as sns
+import pandas as pd
+
+dataset = sns.load_dataset("penguins") # github ke penguins.csv file a ta , [storage ke vars file ma jo ha o penguins.csv file me ha]
+
+en_data =dataset[["sex"]]
+
+# encoding dummies se 
+
+# print(pd.get_dummies(en_data)) # get_dummnies() method  , is me boolean data se dakabe
+
+# sklearn se encoding 
+
+from sklearn.preprocessing import OneHotEncoder
+
+ohe = OneHotEncoder(drop = "first")
+ar = ohe.fit_transform(en_data).toarray()
+
+x = pd.DataFrame(ar , columns = [ "sex_Male" ,"sex_Female"])
+
+print (x)
